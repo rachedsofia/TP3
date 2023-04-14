@@ -21,7 +21,7 @@ public class ReporteDeGastoTest {
 		misGastos.add(alquiler);
 		misGastos.add(desayuno);
 
-		ReporteDeGastos reporteGastos = new ReporteDeGastos(new ArrayList<Comprobante>());
+		ReporteDeGastos reporteGastos = new ReporteDeGastos(new ArrayList<Comprobante>(), LocalDate.now());
 
 		Reporte reporte = reporteGastos.imprimir(misGastos);
 

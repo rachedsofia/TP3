@@ -7,11 +7,13 @@ public class ReporteDeGastos {
 	int total;
 	int gastosDeComida;
 	private List<Comprobante> listaComprobante;
+	Temporal fecha; 
 
-	ReporteDeGastos(List<Comprobante> listaComprobante) {
+	ReporteDeGastos(List<Comprobante> listaComprobante, Temporal fecha) {
 		this.listaComprobante = listaComprobante;
 		this.total = 0;
 		this.gastosDeComida = 0;
+		this.fecha = fecha; 
 	}
 
 	Reporte imprimir(List<Gasto> gastos) {
@@ -23,6 +25,6 @@ public class ReporteDeGastos {
 			listaComprobante.add(gasto.realizarComprobante());
 		}
 
-		return new Reporte(total, gastosDeComida, LocalDate.now(), listaComprobante);
+		return new Reporte(total, gastosDeComida,this.fecha, listaComprobante);
 	}
 }
