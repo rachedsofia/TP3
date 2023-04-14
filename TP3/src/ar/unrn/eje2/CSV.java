@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import com.opencsv.CSVReader;
 
@@ -13,6 +14,7 @@ public class CSV {
 	private List<String[]> csvData;
 	private Map<String, String> options;
 	private CSVReader csvReader;
+	private List<String[]> listaResultados;
 
 	public CSV(ArrayList<String[]> csvData, CSVReader csvReader, HashMap<String, String> options) {
 		this.csvData = Objects.requireNonNull(csvData);
@@ -21,13 +23,10 @@ public class CSV {
 	}
 
 	public void filtrarPorTipo(String tipo, Integer indice) {
-		List<String[]> results = new ArrayList<String[]>();
-		for (int i = 0; i < csvData.size(); i++) {
-			if (csvData.get(i)[indice].equals(options.get(tipo))) {
-				results.add(csvData.get(i));
-			}
-		}
-		this.csvData = results;
+		listaResultados = csvData.stream().filter(fila -> existeElTipo(csvData.indexOf(fila), indice, tipo))
+				.collect(Collectors.toCollection(ArrayList::new));
+
+		this.csvData = listaResultados;
 	}
 
 	public ArrayList<Map<String, String>> cargarMapa() {
@@ -55,6 +54,10 @@ public class CSV {
 		csvReader.forEach(row -> csvData.add(row));
 		csvReader.close();
 		csvData.remove(0);
+	}
+
+	private Boolean existeElTipo(Integer indice1, Integer indice2, String tipo) {
+		return csvData.get(indice1)[indice2].equals(options.get(tipo));
 	}
 
 }
