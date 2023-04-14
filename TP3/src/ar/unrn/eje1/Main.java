@@ -10,9 +10,9 @@ public class Main {
 
 		Alquiler alquilerElTunel = new Alquiler(elTunelCopia, 5);
 		Alquiler alquilerAntesDelFin = new Alquiler(antesDelFinCopia, 3);
-		Cliente cliente1 = new Cliente("Sofía");
+		Cliente yo = new Cliente("Javier");
 
-		cliente1.alquilar(alquilerElTunel);
-		cliente1.alquilar(alquilerAntesDelFin);
+		yo.alquilar(alquilerElTunel);
+		yo.alquilar(alquilerAntesDelFin);
 	}
 }
