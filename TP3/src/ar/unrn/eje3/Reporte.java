@@ -7,10 +7,10 @@ import java.util.Objects;
 public class Reporte {
 	private int gastoComida;
 	private int total;
-	LocalDate fecha;
+	Temporal fecha;
 	private List<Comprobante> listComprobante;
 
-	Reporte(int gasto, int total, LocalDate fecha, List<Comprobante> listComprobante) {
+	Reporte(int gasto, int total, Temporal fecha, List<Comprobante> listComprobante) {
 		this.gastoComida = Objects.requireNonNull(gasto);
 		this.total = Objects.requireNonNull(total);
 		this.fecha = Objects.requireNonNull(fecha);
@@ -33,7 +33,8 @@ public class Reporte {
 		this.listComprobante.add(comprobante);
 	}
 
-	LocalDate obtenerFecha() {
+	Temporal obtenerFecha() {
 		return fecha;
 	}
+	
 }
